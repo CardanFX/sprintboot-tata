@@ -31,7 +31,7 @@ public class LessonController {
     public Lesson createLesson(@RequestBody Lesson lesson){
         return lesson;
     }
-    @GetMapping("path/{id}")
+    @GetMapping("/path/{id}")
     public Lesson getLessonByPathVariable(@PathVariable int id){
         return lessonService.findById(id);
     }

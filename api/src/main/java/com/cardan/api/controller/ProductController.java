@@ -1,11 +1,14 @@
 package com.cardan.api.controller;
 import com.cardan.api.model.Product;
 import com.cardan.api.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/product")
 public class ProductController {
+    @Autowired
+    ProductService productService;
     @PostMapping
     private String create(){
         return "post";
@@ -28,20 +31,14 @@ public class ProductController {
         return product;
     }
 
-    @GetMapping("path/{id}")
+    @GetMapping("/path/{id}")
     public Product getProductByPathVariable(@PathVariable int id){
-        var product = new Product();
-        product.setId(id);
-        product.setQty(id*2);
-        return product;
+        return productService.findById(id);
     }
 
-    @GetMapping("parameter")
+    @GetMapping("/parameter")
     public Product getProductByParameter(@RequestParam int id){
-        var product = new Product();
-        product.setId(id);
-        product.setQty(id*2);
-        return product;
+        return productService.findById(id);
     }
 }
 
