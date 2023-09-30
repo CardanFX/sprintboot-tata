@@ -1,11 +1,16 @@
 package com.cardan.api.controller;
 
 import com.cardan.api.model.Lesson;
+import com.cardan.api.service.LessonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("lesson")
 public class LessonController {
+    @Autowired
+    LessonService lessonService;
+
     @PostMapping
     public String create() {
         return "post";
@@ -28,16 +33,10 @@ public class LessonController {
     }
     @GetMapping("path/{id}")
     public Lesson getLessonByPathVariable(@PathVariable int id){
-        var lesson =  new Lesson();
-        lesson.setId(id);
-        lesson.setQty(id*2);
-        return lesson;
+        return lessonService.findById(id);
     }
     @GetMapping("/parameter")
     public Lesson getLessonByParameter(@RequestParam int id){
-        var lesson =  new Lesson();
-        lesson.setId(id);
-        lesson.setQty(id*2);
-        return lesson;
+        return lessonService.findById(id);
     }
 }
