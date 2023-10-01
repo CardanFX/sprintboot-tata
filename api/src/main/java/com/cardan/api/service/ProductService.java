@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -21,5 +22,29 @@ public class ProductService {
 
     public Product saveProduct(Product product) {
         return productRepository.save(product);
+    }
+
+    private List<Product> findWhenPriceIsMoreThan(int qty) {
+        return productRepository.findAll().stream()
+                .filter(product -> product.getQty() > qty)
+                .toList();
+    }
+
+    public List<Product> filterProductsByCategory(int category) {
+        return productRepository.findAll().stream()
+                .filter(product -> product.getCategoryId() == category)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> mapProductNames() {
+        return productRepository.findAll().stream()
+                .map(Product::getName)
+                .collect(Collectors.toList());
+    }
+
+    public double calculateTotalPrice() {
+        return productRepository.findAll().stream()
+                .mapToDouble(Product::getPrice)
+                .sum();
     }
 }
