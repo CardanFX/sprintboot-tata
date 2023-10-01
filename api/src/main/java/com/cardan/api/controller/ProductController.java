@@ -4,6 +4,8 @@ import com.cardan.api.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -31,14 +33,25 @@ public class ProductController {
         return product;
     }
 
+    /**
+     * <a href="http://localhost:8080/product/path/1">get by id</a>
+     */
     @GetMapping("/path/{id}")
     public Product getProductByPathVariable(@PathVariable int id){
         return productService.findById(id);
     }
 
+    /**
+     * <a href="http://localhost:8080/product/parameter?id=1"> get by id</a>
+     */
     @GetMapping("/parameter")
-    public Product getProductByParameter(@RequestParam int id){
+    public  Product getProductByParameter(@RequestParam int id){
         return productService.findById(id);
+    }
+
+    @GetMapping("/all")
+    public  List<Product> getAllProducts(){
+        return productService.findAll();
     }
 }
 
