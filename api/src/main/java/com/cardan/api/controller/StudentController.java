@@ -1,11 +1,15 @@
 package com.cardan.api.controller;
 
 import com.cardan.api.model.Student;
+import com.cardan.api.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping ("/students")
 public class StudentController {
+    @Autowired
+    StudentService studentService;
     @PostMapping("/create")
     private Student createStudent (@RequestBody Student student){
         return student;
@@ -13,18 +17,12 @@ public class StudentController {
 
     @GetMapping("/path/{id}")
     public Student getProductByPathVariable(@PathVariable int id){
-        var student = new Student();
-        student.setId(id);
-        student.setName("name");
-        return student;
+        return studentService.findById(id);
     }
 
     @GetMapping("/parameter")
     public Student getStudentByParameter (@RequestParam int id){
-        var student = new Student();
-        student.setId(id);
-        student.setName("name");
-        return student;
+        return studentService.findById(id);
     }
 
 }
