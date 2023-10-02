@@ -22,6 +22,15 @@ public class Product {
     private int categoryId;
     private int price;
     private int qty;
+    private String qr;
+
+    public String getQr() {
+        return qr;
+    }
+
+    public void setQr(String qr) {
+        this.qr = qr;
+    }
 
     public String getName() {
         return name;

@@ -5,6 +5,8 @@ import com.cardan.api.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping ("/students")
 public class StudentController {
@@ -23,6 +25,11 @@ public class StudentController {
     @GetMapping("/parameter")
     public Student getStudentByParameter (@RequestParam int id){
         return studentService.findById(id);
+    }
+
+    @GetMapping("/all")
+    public List<Student> getAllStudents (){
+        return studentService.findAllStudents();
     }
 
 }
