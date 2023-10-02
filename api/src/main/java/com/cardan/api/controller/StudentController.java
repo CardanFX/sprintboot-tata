@@ -1,26 +1,30 @@
 package com.cardan.api.controller;
 
+import com.cardan.api.model.Student;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping ("/students")
 public class StudentController {
-    @PostMapping
-    private String create(){
-        return "post";
+    @PostMapping("/create")
+    private Student createStudent (@RequestBody Student student){
+        return student;
     }
 
-    @GetMapping
-    public String read(){
-        return"get";
+    @GetMapping("/path/{id}")
+    public Student getProductByPathVariable(@PathVariable int id){
+        var student = new Student();
+        student.setId(id);
+        student.setName("name");
+        return student;
     }
 
-    @PutMapping
-    public String update(){
-        return "put";
+    @GetMapping("/parameter")
+    public Student getStudentByParameter (@RequestParam int id){
+        var student = new Student();
+        student.setId(id);
+        student.setName("name");
+        return student;
     }
-    @DeleteMapping
-    public String delete(){
-        return "delete";
-    }
+
 }
