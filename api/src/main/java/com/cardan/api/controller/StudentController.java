@@ -16,7 +16,7 @@ public class StudentController {
     }
 
     @GetMapping("/path/{id}")
-    public Student getProductByPathVariable(@PathVariable int id){
+    public Student getByPathVariable(@PathVariable int id){
         return studentService.findById(id);
     }
 
