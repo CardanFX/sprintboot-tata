@@ -7,10 +7,10 @@ import lombok.Getter;
 @Data
 @Getter
 @Entity
-@Table(name="client")
-public class ClientEntity {
+@Table (name="teacher")
+public class TeacherEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     public int getId() {
